@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Data Structures/Arrays.h"
+#include "Data Structures/lib/Arrays.h"
 
 using namespace std;
 

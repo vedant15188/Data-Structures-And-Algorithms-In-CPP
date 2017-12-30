@@ -2,7 +2,7 @@
 // Created by VEDANT KASHYAP on 12/30/2017.
 //
 #include <iostream>
-#include "Arrays.h"
+#include "lib/Arrays.h"
 
 using namespace std;
 
