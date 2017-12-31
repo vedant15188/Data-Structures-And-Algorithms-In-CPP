@@ -6,6 +6,23 @@
 
 using namespace std;
 
+bool Search(int *array, int n, int k) {
+    for (int i = 0; i < n; ++i) {
+        if (array[i] == k)
+            return true;
+    }
+    return false;
+}
+
+void Reverse(int *array, int n) {
+    int temp[n];
+    for (int i = 0; i < n; ++i)
+        temp[i] = array[n - i - 1];
+    for (int i = 0; i < n; ++i) {
+        array[i] = temp[i];
+    }
+}
+
 void RotateFW(int array[], int k, int n) {      // Rotate Forward
     for (int i = 0; i < k; ++i) {
         int temp = array[n - 1];
@@ -38,7 +55,9 @@ void Arrays() {
         temp[i] = var_array[i];
     }
     while (choice != 0) {
-        cout << "Enter your choice\n0 - QUIT\n1 - Forward Shift\n2 - Backward Shift" << endl;
+        cout
+                << "Enter your choice\n0 - QUIT\n1 - Forward Shift\n2 - Backward Shift\n3 - Reverse Array\n4 - Search Array"
+                << endl;
         cin >> choice;
         if (choice == 0)            // Quit the program
             break;
@@ -58,6 +77,19 @@ void Arrays() {
             for (int i = 0; i < n; ++i)
                 cout << temp[i] << " ";
             cout << endl;
+        } else if (choice == 3) {
+            Reverse(var_array, n);
+            cout << "Reversed Array: ";
+            for (int i = 0; i < n; ++i)
+                cout << var_array[i] << " ";
+            cout << endl;
+        } else if (choice == 4) {
+            cout << "Enter the element you want to search for: ";
+            cin >> k;
+            if (Search(var_array, n, k))
+                cout << k << " exists in the array!" << endl;
+            else
+                cout << k << " doesn't exist in the array!" << endl;
         } else         // Invalid Input !!
             cout << "Enter a valid choice!!" << endl;
 

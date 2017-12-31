@@ -12,3 +12,7 @@ void Arrays();
 void RotateFW(int *array, int k, int n);
 
 void RotateBW(int *array, int k, int n);
+
+void Reverse(int *array, int n);
+
+bool Search(int *array, int n, int k);
