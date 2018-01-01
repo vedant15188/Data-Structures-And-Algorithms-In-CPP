@@ -17,3 +17,7 @@ void Single_LinkedList();
 void printList(struct LL_node *LL);
 
 void Append(struct LL_node **LL, int val);
+
+void Insert(struct LL_node **LL, int index, int val);
+
+void Delete(struct LL_node **LL, int val);
