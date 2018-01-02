@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// Write the name of the function you wanna execute!
+// Write the name of the DS/Algorithm you want to execute.
 
 int main() {
     Single_LinkedList();

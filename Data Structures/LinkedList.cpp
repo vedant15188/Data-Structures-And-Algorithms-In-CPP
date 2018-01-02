@@ -102,7 +102,7 @@ void Swap(struct LL_node **LL, int val1, int val2) {
     return;;
 }
 
-void RotateFW(struct LL_node **LL, int k) {
+void RotateBW(struct LL_node **LL, int k) {
     if (k == 0) return;
 
     struct LL_node *temp = *LL;
@@ -123,7 +123,7 @@ void RotateFW(struct LL_node **LL, int k) {
     kNode->next = NULL;
 }
 
-void RotateBW(struct LL_node **LL, int k) {
+void RotateFW(struct LL_node **LL, int k) {
     if (k == 0) return;
 
     struct LL_node *temp = *LL;
@@ -134,7 +134,7 @@ void RotateBW(struct LL_node **LL, int k) {
     }
     n++;
     temp = *LL;
-    while (count < n - k - 1 && temp != NULL) {
+    while (count < n - k && temp != NULL) {
         temp = temp->next;
         count++;
     }
@@ -163,6 +163,9 @@ void Single_LinkedList() {
     struct LL_node *LL = NULL; // Linked List
     int n;              // Size of the Linked List
     int data;           // Data to be put in the nodes of the Linked List
+    int choice;         // To determine which  function to execute
+    int index;          // Position to insert data
+    int x, y;            // Swapping data inputs
 
     cout << "Enter the size of the linked list: ";
     cin >> n;
@@ -171,5 +174,53 @@ void Single_LinkedList() {
     for (int i = 0; i < n; ++i) {
         cin >> data;
         Append(&LL, data);
+    }
+
+    while (1) {
+        cout
+                << "\n0 - QUIT\n1 - Print List\n2 - Append Node\n3 - Insert Node at an index\n4 - Delete Node\n5 - Swap Node\n6 - Search for a Node\n7 - Shift Forward\n8 - Shift Backward\n"
+                << endl;
+        cin >> choice;
+
+        if (choice == 0) break;
+        else if (choice == 1) printList(LL);
+        else if (choice == 2) {
+            cout << "Input data to be appended: ";
+            cin >> data;
+            Append(&LL, data);
+            printList(LL);
+        } else if (choice == 3) {
+            cout << "Input the data to be appended: ";
+            cin >> data;
+            cout << "Input the index to append it into: ";
+            cin >> index;
+            Insert(&LL, index, data);
+            printList(LL);
+        } else if (choice == 4) {
+            cout << "Input the data to be deleted: ";
+            cin >> data;
+            Delete(&LL, data);
+            printList(LL);
+        } else if (choice == 5) {
+            cout << "Input the 2 nodes to be swapped: ";
+            cin >> x >> y;
+            Swap(&LL, x, y);
+            printList(LL);
+        } else if (choice == 6) {
+            cout << "Input the node to search: ";
+            cin >> data;
+            if (Search(&LL, data)) cout << data << " was found in the linked list!";
+            else cout << data << " not found in the linked list";
+        } else if (choice == 7) {
+            cout << "Input the number of times to shift forward: ";
+            cin >> data;
+            RotateFW(&LL, data);
+            printList(LL);
+        } else if (choice == 8) {
+            cout << "Input the number of times to shift backward: ";
+            cin >> data;
+            RotateBW(&LL, data);
+            printList(LL);
+        } else cout << "Not a valid option! Pick a number from 1-8 only!" << endl;
     }
 }
