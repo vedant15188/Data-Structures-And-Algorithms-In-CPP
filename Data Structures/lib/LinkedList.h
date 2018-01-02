@@ -21,3 +21,11 @@ void Append(struct LL_node **LL, int val);
 void Insert(struct LL_node **LL, int index, int val);
 
 void Delete(struct LL_node **LL, int val);
+
+void Swap(struct LL_node **LL, int val1, int val2);
+
+bool Search(struct LL_node **LL, int val);
+
+void RotateFW(struct LL_node **LL, int k);
+
+void RotateBW(struct LL_node **LL, int k);

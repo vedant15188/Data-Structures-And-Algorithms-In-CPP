@@ -68,6 +68,97 @@ void Append(struct LL_node **LL, int val) {
     return;
 }
 
+void Swap(struct LL_node **LL, int val1, int val2) {
+    if (val1 == val2) return;
+
+    struct LL_node *prev1 = NULL, *curr1 = *LL;     // Keeping a track of current and previous values for val1
+    while (curr1 && curr1->data != val1) {          // Searching for val1
+        prev1 = curr1;
+        curr1 = curr1->next;
+    }
+
+    struct LL_node *prev2 = NULL, *curr2 = *LL;     // Keeping a track of current and previous values for val1
+    while (curr2 && curr2->data != val2) {          // Searching for val2
+        prev2 = curr2;
+        curr2 = curr2->next;
+    }
+
+    if (curr1 == NULL && curr2 == NULL) return;     // If either of val1 or val2 not found
+
+    if (prev1 != NULL)                              // Check if val1 is present in the head node
+        prev1->next = curr2;
+    else
+        *LL = curr2;                                // Make val2 the new head node
+
+    if (prev2 != NULL)                              // Check if val2 is present in the head node
+        prev2->next = curr1;
+    else
+        *LL = curr1;                                // Make val2 the new head node
+
+    struct LL_node *temp = curr1->next;             // Swapping next for val1 and val2 nodes
+    curr1->next = curr2->next;
+    curr2->next = temp;
+
+    return;;
+}
+
+void RotateFW(struct LL_node **LL, int k) {
+    if (k == 0) return;
+
+    struct LL_node *temp = *LL;
+    int count = 1;
+    while (count < k && temp != NULL) {
+        temp = temp->next;
+        count++;
+    }
+    if (temp == NULL) return;
+
+    struct LL_node *kNode = temp;
+
+    while (temp->next != NULL)
+        temp = temp->next;
+
+    temp->next = *LL;
+    *LL = kNode->next;
+    kNode->next = NULL;
+}
+
+void RotateBW(struct LL_node **LL, int k) {
+    if (k == 0) return;
+
+    struct LL_node *temp = *LL;
+    int count = 1, n = 0;
+    while (temp->next != NULL) {
+        n++;
+        temp = temp->next;
+    }
+    n++;
+    temp = *LL;
+    while (count < n - k - 1 && temp != NULL) {
+        temp = temp->next;
+        count++;
+    }
+    if (temp == NULL) return;
+
+    struct LL_node *kNode = temp;
+
+    while (temp->next != NULL)
+        temp = temp->next;
+
+    temp->next = *LL;
+    *LL = kNode->next;
+    kNode->next = NULL;
+}
+
+bool Search(struct LL_node **LL, int val) {
+    struct LL_node *temp = *LL;
+    while (temp->next != NULL) {
+        if (temp->data == val) return true;
+        temp = temp->next;
+    }
+    return temp->data == val;
+}
+
 void Single_LinkedList() {
     struct LL_node *LL = NULL; // Linked List
     int n;              // Size of the Linked List
