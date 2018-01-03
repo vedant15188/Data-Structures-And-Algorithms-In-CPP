@@ -1,11 +1,11 @@
 #include <iostream>
-#include "Data Structures/lib/LinkedList.h"
+#include "Data Structures/lib/Stack.h"
 
 using namespace std;
 
 // Write the name of the DS/Algorithm you want to execute.
 
 int main() {
-    Single_LinkedList();
+    Stack();
     return 0;
 }
