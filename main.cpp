@@ -1,11 +1,11 @@
 #include <iostream>
-#include "Data Structures/lib/Stack.h"
+#include "Data Structures/lib/Queues.h"
 
 using namespace std;
 
 // Write the name of the DS/Algorithm you want to execute.
 
 int main() {
-    Stack();
+    Queues();
     return 0;
 }
