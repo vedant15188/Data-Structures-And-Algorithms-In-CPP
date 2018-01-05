@@ -5,6 +5,7 @@
 #include <iostream>
 #include "lib/BinaryTree.h"
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -46,6 +47,24 @@ void BFS(struct BTnode *root) {
             queue1.push(second->right);
         }
     }
+    cout << endl;
+}
+
+void DFSPreOrder(struct BTnode *root) {
+    if (root == NULL) return;
+
+    stack<BTnode *> stack1;
+    stack1.push(root);
+
+    while (!stack1.empty()) {
+        struct BTnode *temp = stack1.top();
+        stack1.pop();
+        cout << temp->data << " ";
+
+        if (temp->right) stack1.push(temp->right);
+        if (temp->left) stack1.push(temp->left);
+    }
+    cout << endl;
 }
 
 void BinaryTree() {
@@ -59,31 +78,31 @@ void BinaryTree() {
     root->right->left = createNode(6);
     root->right->right = createNode(7);
 
-    root->left->left->left = createNode(8);
-    root->left->left->right = createNode(9);
-    root->left->right->left = createNode(10);
-    root->left->right->right = createNode(11);
-    root->right->left->left = createNode(12);
-    root->right->left->right = createNode(13);
-    root->right->right->left = createNode(14);
-    root->right->right->right = createNode(15);
+//    root->left->left->left = createNode(8);
+//    root->left->left->right = createNode(9);
+//    root->left->right->left = createNode(10);
+//    root->left->right->right = createNode(11);
+//    root->right->left->left = createNode(12);
+//    root->right->left->right = createNode(13);
+//    root->right->right->left = createNode(14);
+//    root->right->right->right = createNode(15);
+//
+//    root->left->left->left->left = createNode(16);
+//    root->left->left->left->right = createNode(17);
+//    root->left->left->right->left = createNode(18);
+//    root->left->left->right->right = createNode(19);
+//    root->left->right->left->left = createNode(20);
+//    root->left->right->left->right = createNode(21);
+//    root->left->right->right->left = createNode(22);
+//    root->left->right->right->right = createNode(23);
+//    root->right->left->left->left = createNode(24);
+//    root->right->left->left->right = createNode(25);
+//    root->right->left->right->left = createNode(26);
+//    root->right->left->right->right = createNode(27);
+//    root->right->right->left->left = createNode(28);
+//    root->right->right->left->right = createNode(29);
+//    root->right->right->right->left = createNode(30);
+//    root->right->right->right->right = createNode(31);
 
-    root->left->left->left->left = createNode(16);
-    root->left->left->left->right = createNode(17);
-    root->left->left->right->left = createNode(18);
-    root->left->left->right->right = createNode(19);
-    root->left->right->left->left = createNode(20);
-    root->left->right->left->right = createNode(21);
-    root->left->right->right->left = createNode(22);
-    root->left->right->right->right = createNode(23);
-    root->right->left->left->left = createNode(24);
-    root->right->left->left->right = createNode(25);
-    root->right->left->right->left = createNode(26);
-    root->right->left->right->right = createNode(27);
-    root->right->right->left->left = createNode(28);
-    root->right->right->left->right = createNode(29);
-    root->right->right->right->left = createNode(30);
-    root->right->right->right->right = createNode(31);
-
-    BFS(root);
+    DFSInOrder(root);
 }

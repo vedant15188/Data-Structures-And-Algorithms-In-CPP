@@ -18,3 +18,7 @@ void BinaryTree();
 struct BTnode *createNode(int data);
 
 void BFS(struct BTnode *root);
+
+void DFSPreOrder(struct BTnode *root);
+
+void DFSInOrder(struct BTnode *root);
