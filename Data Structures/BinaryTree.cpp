@@ -67,6 +67,53 @@ void DFSPreOrder(struct BTnode *root) {
     cout << endl;
 }
 
+void DFSInOrder(struct BTnode *root) {
+    struct BTnode *current = root;
+    stack<struct BTnode *> stack1;
+    int done = 0;
+    while (done != 1) {
+        if (current != NULL) {
+            stack1.push(current);
+            current = current->left;
+        } else {
+            if (!stack1.empty()) {
+                current = stack1.top();
+                stack1.pop();
+                cout << current->data << " ";
+                current = current->right;
+            } else done++;
+        }
+    }
+}
+
+void DFSPostOrder(struct BTnode *root) {
+    struct BTnode *current = root;
+    stack<struct BTnode *> stack1;
+
+    if (root == NULL) return;
+
+    do {
+        while (current) {
+            if (current->right)
+                stack1.push(current->right);
+            stack1.push(current);
+            current = current->left;
+        }
+
+        current = stack1.top();
+        stack1.pop();
+
+        if (current->right && !stack1.empty() && current->right == stack1.top()) {
+            stack1.pop();
+            stack1.push(current);
+            current = current->right;
+        } else {
+            cout << current->data << " ";
+            current = NULL;
+        }
+    } while (!stack1.empty());
+}
+
 void BinaryTree() {
     struct BTnode *root = createNode(1);
 
@@ -103,6 +150,4 @@ void BinaryTree() {
 //    root->right->right->left->right = createNode(29);
 //    root->right->right->right->left = createNode(30);
 //    root->right->right->right->right = createNode(31);
-
-    DFSInOrder(root);
 }
